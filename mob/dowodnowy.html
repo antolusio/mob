@@ -186,24 +186,26 @@ body, html {
     <script src="./dowod_files/timenew.js"></script>
     <main>
         <section id="lew">
-            <img id="userPhoto" src="./photo.jpg" class="object-contain w-full rounded-lg photo" alt="Brak zdjęcia">
+            <img id="userPhoto" src="" class="object-contain w-full rounded-lg photo" alt="Brak zdjęcia">
             <img class="photo-border" src="http://ip19.vp2.titanaxe.com/cwel2/szmata.png" alt="">
             <div id="gradient"></div>
             <img src="./dowod_files/flaga.gif" alt="flaga" id="flaga" style="margin: 0; margin-top: 13px;">
             <div id="rzecz" style="margin: 0; margin-top: 10px;">
               <img src="./dowod_files/godlo.gif" alt="godlo" id="godlo">
-<script>
-    // Wczytanie zdjęcia z localStorage i wyświetlenie go
+    <script>
+    // Wczytaj zdjęcie z localStorage i ustaw w img
     window.onload = function () {
         const savedPhoto = localStorage.getItem("profilePhoto");
         const userPhoto = document.getElementById("userPhoto");
+
         if (savedPhoto) {
-            userPhoto.src = savedPhoto;
+            userPhoto.src = savedPhoto; // Ustaw Base64 jako src
         } else {
-            console.warn("Nie znaleziono zapisanego zdjęcia w localStorage.");
+            userPhoto.alt = "Brak zdjęcia w systemie";
         }
     };
 </script>
+
     
              <script>
                     const godlo = document.getElementById('godlo');
