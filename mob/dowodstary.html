@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="3; url=/index.php" />
+    <style>
+        @keyframes rainbow {
+            0% { background-color: red; }
+            16.67% { background-color: orange; }
+            33.34% { background-color: yellow; }
+            50.01% { background-color: green; }
+            66.68% { background-color: blue; }
+            83.35% { background-color: indigo; }
+            100% { background-color: violet; }
+        }
+        @keyframes pulse {
+            0% { background-color: yellow; }
+            100% { background-color: orange; }
+        }
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: rainbow 1s infinite;
+            font-family: Arial, sans-serif;
+        }
+        .cwel {
+            animation: pulse 1s infinite alternate;
+            color: black;
+            padding: 20px;
+            font-size: 3em; 
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+    <title>4 0 4</title>
+</head>
+<body>
+    <span class="cwel">404</span>
+</body>
+</html>

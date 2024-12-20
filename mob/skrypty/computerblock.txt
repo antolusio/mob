@@ -1,0 +1,30 @@
+   <script>
+        // Blokada prawego przycisku myszy
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // Blokada skr�t�w klawiaturowych
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+U (wy�wietlenie �r�d�a strony)
+            if (e.ctrlKey && e.key === 'u') {
+                e.preventDefault();
+            }
+            // Ctrl+Shift+I (Narz�dzia developerskie)
+            if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+                e.preventDefault();
+            }
+            // Ctrl+Shift+C (Zbadaj element)
+            if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+                e.preventDefault();
+            }
+            // Ctrl+Shift+J (Konsola)
+            if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+                e.preventDefault();
+            }
+            // F12 (Narz�dzia developerskie)
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+        });
+    </script>

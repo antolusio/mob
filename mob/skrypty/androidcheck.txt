@@ -1,0 +1,27 @@
+<script>
+    // Sprawdzenie, czy aplikacja dzia�a w trybie PWA
+    const isPWA = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+    // Wykrywanie, czy urz�dzenie jest mobilne
+    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (!isPWA || !isMobile) {
+        // Je�li u�ytkownik nie jest na urz�dzeniu mobilnym lub aplikacja nie dzia�a jako PWA
+        document.body.innerHTML = `
+            <div class="message">
+<p>Ta aplikacja działa tylko na urządzeniach mobilnych po dodaniu do ekranu głównego.</p>
+<p><strong>Na urządzeniach iOS:</strong> Dodaj aplikację do ekranu głównego z menu udostępniania.</p>
+<p><strong>Na urządzeniach Android:</strong> Użyj opcji 'Dodaj do ekranu głównego' w menu przeglądarki.</p>
+
+<p style="position: fixed; bottom: 0; width: 100%; text-align: center; background-color: white; padding: 10px;">
+Kontakt: <a href="https://discord.gg/Obywatel" target="_blank" style="color:blue;">Kliknij aby dołączyć do naszego Discorda</a>
+</p>
+
+            </div>
+        `;
+    }
+</script>
+
+
+    <script src="./dowod_files/wybor.js"></script>
+    <script src="./dowod_files/scale.js"
