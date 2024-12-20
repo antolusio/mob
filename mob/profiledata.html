@@ -236,12 +236,12 @@
         <header>
             <h1>Edycja danych</h1>
         </header>
-        <div class="photo-container">
-            <!-- Placeholder zdjęcia -->
-            <img src="./photo.jpg" class="object-contain w-full rounded-lg photo" alt="Brak zdjęcia">
-            <!-- Przycisk wyboru pliku -->
-            <input type="file" id="imageInput" class="file-input" accept="image/*">
-        </div>
+l<div class="photo-container">
+    <!-- Placeholder zdjęcia -->
+    <img id="photoPreview" src="./photo.jpg" alt="Brak zdjęcia">
+    <!-- Przycisk wyboru pliku -->
+    <input type="file" id="imageInput" class="file-input" accept="image/*" onchange="previewPhoto()">
+</div>
         <form id="passport-form">
             <!-- Sekcja podstawowa -->
             <div class="form-group">
@@ -362,6 +362,22 @@
             input.value = input.value.toUpperCase();
         }
         
+        function previewPhoto() {
+        const fileInput = document.getElementById("imageInput");
+        const photoPreview = document.getElementById("photoPreview");
+
+        if (fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                photoPreview.src = e.target.result; // Ustaw podgląd
+                localStorage.setItem("profilePhoto", e.target.result); // Zapisz do localStorage
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        } else {
+            photoPreview.src = "./photo.jpg"; // Domyślne zdjęcie
+        }
+    }
+    
         // Funkcja do zapisania danych paszportowych
         function saveData() {
             const photo = document.getElementById("imageInput").value;
@@ -418,7 +434,14 @@
             alert("Dane zostały zapisane!");
         }
         
-
+    // Odczyt zdjęcia z localStorage przy ładowaniu strony
+    window.onload = function () {
+        const savedPhoto = localStorage.getItem("profilePhoto");
+        const photoPreview = document.getElementById("photoPreview");
+        if (savedPhoto) {
+            photoPreview.src = savedPhoto;
+        }
+    };
         </script>
 
         
