@@ -236,12 +236,13 @@
         <header>
             <h1>Edycja danych</h1>
         </header>
-l<div class="photo-container">
-    <!-- Placeholder zdjęcia -->
-    <img id="photoPreview" src="./photo.jpg" alt="Brak zdjęcia">
-    <!-- Przycisk wyboru pliku -->
+<div class="photo-container">
+    <!-- Obraz podglądu -->
+    <img id="photoPreview" src="" alt="Podgląd zdjęcia" style="max-width: 200px; display: none;">
+    <!-- Input do wyboru pliku -->
     <input type="file" id="imageInput" class="file-input" accept="image/*" onchange="previewPhoto()">
 </div>
+
         <form id="passport-form">
             <!-- Sekcja podstawowa -->
             <div class="form-group">
@@ -369,14 +370,26 @@ l<div class="photo-container">
         if (fileInput.files && fileInput.files[0]) {
             const reader = new FileReader();
             reader.onload = function (e) {
-                photoPreview.src = e.target.result; // Ustaw podgląd
-                localStorage.setItem("profilePhoto", e.target.result); // Zapisz do localStorage
+                const imageData = e.target.result;
+                photoPreview.src = imageData; // Podgląd obrazu
+                photoPreview.style.display = "block"; // Pokaż obraz
+                localStorage.setItem("profilePhoto", imageData); // Zapisz do localStorage
             };
-            reader.readAsDataURL(fileInput.files[0]);
+            reader.readAsDataURL(fileInput.files[0]); // Konwertuj plik na Base64
         } else {
-            photoPreview.src = "./photo.jpg"; // Domyślne zdjęcie
+            alert("Wybierz obraz, aby go wyświetlić!");
         }
     }
+
+    // Odczyt obrazu przy ładowaniu strony
+    window.onload = function () {
+        const savedPhoto = localStorage.getItem("profilePhoto");
+        if (savedPhoto) {
+            const photoPreview = document.getElementById("photoPreview");
+            photoPreview.src = savedPhoto;
+            photoPreview.style.display = "block";
+        }
+    };
     
         // Funkcja do zapisania danych paszportowych
         function saveData() {
@@ -432,14 +445,6 @@ l<div class="photo-container">
             localStorage.setItem("city", city);
         
             alert("Dane zostały zapisane!");
-        }
-        
-    // Odczyt zdjęcia z localStorage przy ładowaniu strony
-    window.onload = function () {
-        const savedPhoto = localStorage.getItem("profilePhoto");
-        const photoPreview = document.getElementById("photoPreview");
-        if (savedPhoto) {
-            photoPreview.src = savedPhoto;
         }
     };
         </script>
